@@ -1,4 +1,4 @@
-setfpscap(90) -
+if setfpscap then setfpscap(90) end
 local v3_net, v3_808 = Vector3.new(8000, 25.1, 0.1), Vector3.new(8, 0, 8)
 local function getNetlessVelocity(realPartVelocity)
     if realPartVelocity.Magnitude > 1 then
