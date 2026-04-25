@@ -1,3 +1,7 @@
+-- Legendbro Hub: Tekrar çalışmayı engelle
+if _G.LegendbroHubLoaded then return end
+_G.LegendbroHubLoaded = true
+
 if setfpscap then setfpscap(90) end
 local v3_net, v3_808 = Vector3.new(8000, 25.1, 0.1), Vector3.new(8, 0, 8)
 local function getNetlessVelocity(realPartVelocity)
@@ -332,6 +336,13 @@ if hum then
     for i, v in pairs(hum:GetPlayingAnimationTracks()) do
         v:Stop()
     end
+    -- Ölmeyi engelle
+    pcall(function() hum:SetStateEnabled(Enum.HumanoidStateType.Dead, false) end)
+    hum.HealthChanged:Connect(function(health)
+        if health <= 0 then
+            pcall(function() hum.Health = hum.MaxHealth end)
+        end
+    end)
 end
 c.Archivable = true
 local cl = clone(c)
@@ -939,7 +950,7 @@ Main.Name = "Main"
 Main.Parent = ZEONUI
 Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Main.BackgroundTransparency = 1.000
-Main.Position = UDim2.new(-0.892896712, 0, -0.392789423, 0)
+Main.Position = UDim2.new(0.5, -241, 0.5, -116)
 Main.Size = UDim2.new(0, 482, 0, 232)
 Main.Image = "rbxassetid://3570695787"
 Main.ImageColor3 = Color3.fromRGB(120, 0, 0)
